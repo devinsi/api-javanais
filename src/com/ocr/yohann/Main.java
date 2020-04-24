@@ -7,48 +7,47 @@ import java.util.Scanner;
 
 class Main {
 
+    private static String chaineTraduite = "";
+    private static String chaineAv = "av";
 
-     public static void traduireJavanais(String chaine){
-         String chaineATraduire = chaine;
-         String chaineTraduite = "";
+     public static void traduireJavanais(String chaineFrancaise){
+
          String voyelle = "aàâeéèêëiïîoôùüuy";
          String consolle = " bcdfghjklmnpqrstvwxzç" ;
-        for (int j=0; j<chaineATraduire.length(); j++) {
+         for (int j=0; j<chaineFrancaise.length(); j++) {
             for(int i=0; i<voyelle.length(); i++) {
-                if (    chaineATraduire.charAt(j) == chaineATraduire.charAt(0) && chaineATraduire.charAt(j) == voyelle.charAt(i)){
-                    chaineTraduite =  chaineTraduite + "av";
+                if (    chaineFrancaise.charAt(j) == chaineFrancaise.charAt(0) && chaineFrancaise.charAt(j) == voyelle.charAt(i)){
+                    chaineTraduite =  chaineTraduite + chaineAv;
                 }
-                if (chaineATraduire.charAt(j) == voyelle.charAt(i) && chaineATraduire.charAt(j) != chaineATraduire.charAt(0)) {
-                    for (int z = 0; z < consolle.length(); z++) {
-                        if (chaineATraduire.charAt(j - 1) == consolle.charAt(z)) {
-                            chaineTraduite =  chaineTraduite + "av";
+                if (chaineFrancaise.charAt(j) == voyelle.charAt(i) && chaineFrancaise.charAt(j) != chaineFrancaise.charAt(0)) {
+                    for (int z=0; z<consolle.length(); z++) {
+                        if (chaineFrancaise.charAt(j - 1) == consolle.charAt(z)) {
+                            chaineTraduite =  chaineTraduite + chaineAv;
                         }
                     }
                 }
             }
-            chaineTraduite +=  chaineATraduire.charAt(j);
+            chaineTraduite +=  chaineFrancaise.charAt(j);
         }
         System.out.println("************************************************************");
         System.out.println(chaineTraduite);
         System.out.println("************************************************************");
     }
-    public static void traduireFrancais(String chaine){
-        String chaineFrancais = chaine;
-        String chaineTrad = "";
+    public static void traduireFrancais(String chaineJavanaise){
 
-        if(chaineFrancais.matches("(.*)av(.*)")  ){
-            chaineTrad = chaineFrancais.replace("av", "");
-        }if(chaineFrancais.matches("((.*)(av){2,}(.*))")) {
-            chaineTrad = chaineFrancais.replace("avavav", "1/-");
-            chaineTrad = chaineFrancais.replace("avav", "1/-");
-            if(chaineTrad.matches("(.*)av(.*)")) {
-                chaineTrad = chaineTrad.replace("av", "");
-            }if(chaineTrad.matches("(.*)1(.*)")) {
-                chaineTrad = chaineTrad.replace("1/-", "av");
+        if(chaineJavanaise.matches("(.*)chaineAv(.*)")  ){
+            chaineTraduite = chaineJavanaise.replace(chaineAv, "");
+        }if(chaineJavanaise.matches("((.*)(av){2,}(.*))")) {
+            chaineTraduite = chaineJavanaise.replace("avavav", "1/-");
+            chaineTraduite = chaineJavanaise.replace("avav", "1/-");
+            if(chaineTraduite.matches("(.*)av(.*)")) {
+                chaineTraduite = chaineTraduite.replace(chaineAv, "");
+            }if(chaineTraduite.matches("(.*)1/-(.*)")) {
+                chaineTraduite = chaineTraduite.replace("1/-", "av");
             }
         }
         System.out.println("************************************************************");
-        System.out.println( chaineTrad);
+        System.out.println( chaineTraduite);
         System.out.println("************************************************************");
     }
 
@@ -57,7 +56,7 @@ class Main {
         BufferedReader entree = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("Souhaitez-vous faire une traduction :");
-        System.out.println(" 1/ du français au javanais : entrez 1  + \"enter\" \n 2/ du javanais au français : entrez 2 + \"enter\"" );
+        System.out.println(" 1/ du français au javanais : entrez 1  + \"entrer\" \n 2/ du javanais au français : entrez 2 + \"entrer\"" );
         int valeur = entreeInt.nextInt();
         String chaine;
         switch (valeur){
